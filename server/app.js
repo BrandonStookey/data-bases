@@ -1,4 +1,5 @@
 var express = require('express');
+// var chatter = require('../client/chatterClient/scripts/app.js');
 var db = require('./db');
 
 // Middleware
