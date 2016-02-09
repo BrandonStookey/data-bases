@@ -6,7 +6,7 @@ $(document).ready(function()  {
 
   app = {
 
-    server: "http://127.0.0.1:3000/classes/chatterbox/",
+    server: "http://127.0.0.1:3000/classes/messages/",
     username: 'anonymous',
     room: 'main',
     house: {},
@@ -79,7 +79,7 @@ $(document).ready(function()  {
         url: app.server,
         type: 'GET',
 
-        data:{order: 'id'},
+        // data:{order: '-createdAt'},
         contentType: 'application/json',
         success: function (data) {
 
