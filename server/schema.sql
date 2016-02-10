@@ -23,8 +23,8 @@ USE chat;
 
  CREATE TABLE messages (
    id int(20) NOT NULL AUTO_INCREMENT,
-   userid int NOT NULL,
-   message varchar(50) NOT NULL,
+   userid int,
+   message varchar(50),
    roomname varchar(200),
    PRIMARY KEY (ID)
  );
@@ -32,7 +32,7 @@ USE chat;
  		
  CREATE TABLE users (
    id int(20) NOT NULL AUTO_INCREMENT,
-   username varchar(15) NOT NULL,
+   username varchar(15),
    PRIMARY KEY (`id`)
  );
 

@@ -17,18 +17,24 @@ module.exports = {
   messages: {
     get: function (req, res) {
     	models.messages.get(function(err, results){
-    		
+    		if(err){
+          console.log(err);
+        }
     		res.json(results);    		
     	});
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-		var params =[ req.body[message], req.body[username], req.body[roomname]];
+      console.log('message ', req.body['message'] );
+		var params =[ req.body['message'], req.body['username'], req.body['roomname']];
   		models.messages.post(params, function(err, results){
+        if(err){
+          console.log(err);
+        }
   			res.json(results);
   		});
     }, // a function which handles posting a message to the database
     options: function(req,res){
-      res.writeHead(res, responseHeaders);
+      res.writeHead(200, responseHeaders);
       res.end();
     }
   },
@@ -37,19 +43,23 @@ module.exports = {
     // Ditto as above
     get: function (req, res) {
     	models.users.get(function(err, results){
-
+        if(err){
+          console.log(err);
+        }
     		res.json(results);
     	})
     },
     post: function (req, res) {
     	var params = [ req.body.username ];
     	models.users.post(params, function(err, results){
-
+        if(err){
+          console.log(err);
+        }
     		res.json(results);
     	})
     },
     options: function(req,res){
-      res.writeHead(res, responseHeaders);
+      res.writeHead(200, responseHeaders);
       res.end();
     }
   }

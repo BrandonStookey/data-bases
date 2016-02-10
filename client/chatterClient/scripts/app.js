@@ -79,7 +79,7 @@ $(document).ready(function()  {
         url: app.server,
         type: 'GET',
 
-        // data:{order: '-createdAt'},
+        data:{order: '-createdAt'},
         contentType: 'application/json',
         success: function (data) {
 
@@ -162,6 +162,7 @@ $(document).ready(function()  {
         roomname: $('#roomSelection').val() || 'main' //this.room || 'main'
       };
       this.send(message);
+
       console.log('sending message');
     },
 

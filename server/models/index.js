@@ -8,7 +8,7 @@ connection.connect();
 module.exports = {
   messages: {
     get: function (callback) {
-    	var queryStr = "select messages.id, messages.message, messages.roomname, users.username from messages \
+    	var queryStr = "select messages.id, messages.messages, messages.roomname, users.username from messages \
     					left outer join users on (messages.userid = users.id) \
     					order by messages.id desc";
     	connection.query(queryStr, function(err, results){
@@ -16,10 +16,13 @@ module.exports = {
     	});
     }, // a function which produces all the messages
     post: function (params, callback) {
-    	 var queryStr = "insert into messages(message,userid,rommname) \
+    	 var queryStr = "insert into messages(message, userid, roomname) \
     	 				values (?, (select id from users where username = ? limit 1), ?)"
     	 connection.query(queryStr, params, function(err, results){
-    	 	callback(results);
+    	 	if(err){
+                console.log(err);
+            };
+            callback(results);
     	 });
     } // a function which can be used to insert a message into the database
   },
