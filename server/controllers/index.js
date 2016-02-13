@@ -2,14 +2,15 @@ var models = require('../models');
 var bluebird = require('bluebird');
 
 var userFields = ['username'];
-var messageFields = ['message', 'username', 'roomname'];
+var messageFields = ['text', 'username', 'roomname'];
 
 var responseHeaders = {  
+    "Access-Control-Allow-Origin": "*",
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
     "access-control-allow-headers": "content-type, accept",
     "access-control-max-age": 10,
-    "Content-Type": "application/json"
+    "Content-Type": "application/json; charset=utf-8"
 };
 
 
@@ -24,11 +25,13 @@ module.exports = {
     	});
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      console.log('message ', req.body['message'] );
-		var params =[ req.body['message'], req.body['username'], req.body['roomname']];
-  		models.messages.post(params, function(err, results){
+		var params =[ req.body.message, req.body.username, req.body.roomname ];
+    
+    console.log('Controllers POST PARAMS ', params);
+  		
+      models.messages.post(params, function(err, results){
         if(err){
-          console.log(err);
+          console.log('I am a post error!', err);
         }
   			res.json(results);
   		});
@@ -55,8 +58,11 @@ module.exports = {
         if(err){
           console.log(err);
         }
+
+        console.log('CONTROLLERS USERS RESULTS: ', res.json(results));
+
     		res.json(results);
-    	})
+    	});
     },
     options: function(req,res){
       res.writeHead(200, responseHeaders);

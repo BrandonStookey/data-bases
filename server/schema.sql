@@ -22,18 +22,18 @@ USE chat;
    /* Describe your table here.*/
 
  CREATE TABLE messages (
-   id int(20) NOT NULL AUTO_INCREMENT,
-   userid int,
-   message varchar(50),
-   roomname varchar(200),
+   id int NOT NULL AUTO_INCREMENT,
+   userid int NOT NULL,
+   text varchar(200) NOT NULL,
+   roomname varchar(20),
    PRIMARY KEY (ID)
  );
 
  		
  CREATE TABLE users (
-   id int(20) NOT NULL AUTO_INCREMENT,
-   username varchar(15),
-   PRIMARY KEY (`id`)
+   id int NOT NULL AUTO_INCREMENT,
+   username varchar(40) NOT NULL,
+   PRIMARY KEY (ID)
  );
 
  		
