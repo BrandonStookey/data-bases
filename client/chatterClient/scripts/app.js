@@ -57,7 +57,7 @@ $(document).ready(function()  {
 
         url: app.server,
         type: 'POST',
-        data: JSON.stringify(message),
+        data: {message},
         contentType: 'application/json',
         success: function (message) {
          console.log('this is our message ' + message);
@@ -79,7 +79,7 @@ $(document).ready(function()  {
         url: app.server,
         type: 'GET',
 
-        data:{order: '-createdAt'},
+        data:{order: '-messages'},
         contentType: 'application/json',
         success: function (data) {
 
